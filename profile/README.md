@@ -48,3 +48,5 @@
 상세 역할은 [협업 가이드](https://github.com/YC-CapstoneDesign-5/.github/blob/main/CONTRIBUTING.md#0-팀-역할)를 참고하세요.
 
 **기술 스택**: React · TypeScript · Django REST Framework · PostgreSQL · Celery · Redis · PaddleOCR · pgvector ([상세](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#10-기술-스택))
+
+<sub>모든 기능이 구현된다는 전제로 설계했습니다. 전제 조건은 [아키텍처 문서 13장](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#13-전제-가정)에 정리했습니다.</sub>

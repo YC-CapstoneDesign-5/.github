@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 480" width="960" height="480" font-family="Pretendard, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="960" height="480" rx="16" fill="#ffffff"/>
+  <rect x="0.5" y="0.5" width="959" height="479" rx="16" fill="none" stroke="#e2e8f0"/>
+
+  <text x="480" y="40" text-anchor="middle" font-size="20" font-weight="700" fill="#0f172a">행정 구조대 · 한눈에 보기</text>
+  <text x="480" y="64" text-anchor="middle" font-size="13" fill="#64748b">흩어진 자료를 모아 검증하고, 계산하고, 제출 서식으로 내보냅니다</text>
+
+  <!-- 입력 -->
+  <text x="140" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">① 자료 입력</text>
+  <g font-size="13" fill="#0f172a">
+    <rect x="40" y="114" width="200" height="56" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="140" y="138" text-anchor="middle" font-weight="600">부서별 출석·급여 엑셀</text>
+    <text x="140" y="157" text-anchor="middle" font-size="11" fill="#64748b">부서가 제출 전 Pre-Check 자가검증</text>
+    <rect x="40" y="182" width="200" height="56" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="140" y="206" text-anchor="middle" font-weight="600">스캔 출석부</text>
+    <text x="140" y="225" text-anchor="middle" font-size="11" fill="#64748b">PDF · 이미지 · Pre-Check OCR 보조</text>
+    <rect x="40" y="250" width="200" height="56" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="140" y="274" text-anchor="middle" font-weight="600">4대보험 고지 자료</text>
+    <text x="140" y="293" text-anchor="middle" font-size="11" fill="#64748b">기관 전체 수천 명 혼재</text>
+    <rect x="40" y="318" width="200" height="56" rx="10" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="140" y="342" text-anchor="middle" font-weight="600">참여자 기준 명단</text>
+    <text x="140" y="361" text-anchor="middle" font-size="11" fill="#64748b">사업 · 부서 · 근무기간</text>
+  </g>
+
+  <!-- 플랫폼 -->
+  <text x="480" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#7c3aed">② 플랫폼 처리</text>
+  <rect x="320" y="114" width="320" height="260" rx="14" fill="#f5f3ff" stroke="#ddd6fe"/>
+  <g font-size="13" fill="#0f172a">
+    <rect x="340" y="130" width="280" height="40" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <text x="480" y="155" text-anchor="middle"><tspan font-weight="600">정규화</tspan> · 원본 파일/시트/행 번호 보존</text>
+    <rect x="340" y="178" width="280" height="40" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <text x="480" y="203" text-anchor="middle"><tspan font-weight="600">교차 검증</tspan> · 출결 ↔ 급여 ↔ OCR</text>
+    <rect x="340" y="226" width="280" height="40" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <text x="480" y="251" text-anchor="middle"><tspan font-weight="600">인건비 계산</tspan> · Decimal 1원 단위</text>
+    <rect x="340" y="274" width="280" height="40" rx="8" fill="#ffffff" stroke="#ddd6fe"/>
+    <text x="480" y="299" text-anchor="middle"><tspan font-weight="600">4대보험 귀속 매칭</tspan> · 다차원 대조</text>
+    <rect x="340" y="322" width="280" height="40" rx="8" fill="#fef3c7" stroke="#fcd34d"/>
+    <text x="480" y="347" text-anchor="middle"><tspan font-weight="600">담당자 검토·확정</tspan> · 불확실하면 확인 필요</text>
+  </g>
+
+  <!-- 출력 -->
+  <text x="820" y="100" text-anchor="middle" font-size="14" font-weight="700" fill="#059669">③ 출력</text>
+  <g font-size="13" fill="#0f172a">
+    <rect x="720" y="114" width="200" height="56" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="820" y="138" text-anchor="middle" font-weight="600">건강보험공단 EDI</text>
+    <text x="820" y="157" text-anchor="middle" font-size="11" fill="#64748b">취득·상실 신고 자료</text>
+    <rect x="720" y="182" width="200" height="56" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="820" y="206" text-anchor="middle" font-weight="600">일모아 · 인사랑</text>
+    <text x="820" y="225" text-anchor="middle" font-size="11" fill="#64748b">일괄 업로드 규격 서식</text>
+    <rect x="720" y="250" width="200" height="56" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="820" y="274" text-anchor="middle" font-weight="600">인건비 총괄표</text>
+    <text x="820" y="293" text-anchor="middle" font-size="11" fill="#64748b">부서·사업·월별 집계</text>
+    <rect x="720" y="318" width="200" height="56" rx="10" fill="#ecfdf5" stroke="#a7f3d0"/>
+    <text x="820" y="342" text-anchor="middle" font-weight="600">현황 대시보드</text>
+    <text x="820" y="361" text-anchor="middle" font-size="11" fill="#64748b">마감 알림 D-7 · D-3 · D-Day</text>
+  </g>
+
+  <g stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M248,244 L312,244"/>
+    <path d="M648,244 L712,244"/>
+  </g>
+  <!-- RAG 챗봇 -->
+  <rect x="40" y="392" width="880" height="44" rx="10" fill="#fdf2f8" stroke="#fbcfe8"/>
+  <text x="480" y="419" text-anchor="middle" font-size="13" fill="#0f172a"><tspan font-weight="700" fill="#db2777">AI 행정규정 챗봇 (RAG)</tspan>  ·  모든 단계에서 업무 지침을 근거와 함께 안내 · 근거 없으면 "담당자 확인 필요"</text>
+  <text x="480" y="462" text-anchor="middle" font-size="11" fill="#94a3b8">원본 추적성 · 결정론적 계산 · 자동 확정 금지 · 업무 상태 독립 · 개인정보 최소 노출</text>
+</svg>

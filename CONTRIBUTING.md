@@ -1,27 +1,152 @@
 # 협업 가이드
 
-상세 규칙은 [조직 README](https://github.com/YC-CapstoneDesign-5)의 10~11장을 기준으로 합니다.
+> [← 조직 홈](https://github.com/YC-CapstoneDesign-5) · [아키텍처](docs/ARCHITECTURE.md) · [기능 명세](docs/FEATURES.md) · [로드맵](docs/ROADMAP.md)
 
 ## 작업 흐름
-1. 이슈 생성 (기능 요청 / 버그 리포트 / 작업 템플릿 사용)
-2. `develop`에서 브랜치 분기: `<prefix>/<작업명>` (소문자, 하이픈)
-   - prefix: `feat` `fix` `docs` `refactor` `test` `chore`
-3. Conventional Commits 형식으로 커밋 (`<type>: 요약` + `## 변경 이유` / `## 변경 내용`)
-4. `develop` 대상으로 PR 생성 — 제목 `[<Type>] 요약`, 본문은 템플릿이 자동으로 채워집니다.
-5. 리뷰어 1인 이상 승인 + CI 통과 후 **Squash and Merge**, 머지된 브랜치는 삭제
 
-## 커밋 예시
+```mermaid
+flowchart LR
+    A["이슈 생성<br>(템플릿 사용)"] --> B["develop에서<br>브랜치 분기"]
+    B --> C["커밋<br>(Conventional Commits)"]
+    C --> D["PR 생성<br>→ develop"]
+    D --> E["리뷰 1인 승인<br>+ CI 통과"]
+    E --> F["Squash and Merge<br>(브랜치 자동 삭제)"]
 ```
+
+## 1. 브랜치 및 커밋 규칙
+
+원활한 협업과 변경 이력의 투명성을 위해 엄격한 Git 워크플로우를 준수합니다.
+
+### 브랜치 전략
+- 기본 베이스 브랜치는 `main` (운영 배포)과 `develop` (개발 통합)을 기준으로 합니다.
+- 모든 기능 개발과 작업은 `develop` 브랜치에서 분기하여 작업 후 PR을 통해 병합합니다.
+- **브랜치 네이밍 형식**: `<prefix>/<기능 또는 작업명>` (소문자 및 하이픈 `-` 사용)
+
+| Prefix | 사용 목적 | 예시 |
+| :--- | :--- | :--- |
+| `feat` | 새로운 기능 개발 | `feat/ocr-pipeline`, `feat/payroll-calculator`, `feat/excel-ingestion` |
+| `fix` | 버그 및 결함 수정 | `fix/decimal-rounding-error`, `fix/insurance-matching-null` |
+| `docs` | 문서 작성 및 수정 | `docs/readme-specification`, `docs/api-guide` |
+| `refactor` | 코드 리팩토링 (기능 변경 없음) | `refactor/clean-payroll-service`, `refactor/ocr-worker` |
+| `test` | 테스트 코드 작성 및 검증 | `test/payroll-edge-cases`, `test/e2e-scenarios` |
+| `chore` | 빌드, 패키지 매니저, 환경 설정 | `chore/update-dependencies`, `chore/docker-compose` |
+
+---
+
+### 커밋 메시지 규칙
+
+커밋 메시지는 **Conventional Commits** 표준을 따르며, **제목(무엇을)**, **변경 이유(왜)**, **변경 내용(어떻게)**을 본문에 명확히 서술해야 합니다.
+
+#### 1. 기본 구조
+```gitcommit
+<Type>: <작업 내용 요약 (50자 이내, 명령조/명사형)>
+
+## 변경 이유
+- 어떤 문제를 해결하고자 했는지, 어떤 기획/법정 요구사항에 의한 것인지 서술합니다.
+- 변경이 필요했던 배경과 맥락을 작성합니다.
+
+## 변경 내용
+- 문제 해결을 위해 구체적으로 어떤 로직과 컴포넌트를 어떻게 수정했는지 기술합니다.
+- 부수 효과나 데이터 마이그레이션이 있다면 명시합니다.
+
+Resolves: #이슈번호 (선택사항)
+```
+
+#### 2. 커밋 타입
+- `feat`: 새로운 기능 추가 (예: OCR 파이프라인 추가, 4대보험 귀속 매칭 추가)
+- `fix`: 버그 및 오류 수정 (예: 일할 계산 시 주휴수당 누락 버그 수정)
+- `docs`: 문서 수정 및 추가 (예: README 명세서 최신화, API 문서 작성)
+- `style`: 코드 포맷팅, 세미콜론 누락, 들여쓰기 수정 (로직 변경 없음)
+- `refactor`: 프로덕션 코드 리팩토링 (기능 추가 또는 버그 수정 없음)
+- `test`: 테스트 코드 추가, 단위 테스트 보강, Fixture 수정
+- `chore`: 빌드 업무 수정, 패키지 설치, `.gitignore` 수정 등 기타 작업
+
+#### 3. 모범 커밋 예시
+```gitcommit
 feat: 4대보험 고지 자료 다차원 귀속 매칭 로직 구현
 
 ## 변경 이유
-- 주민번호 단독 매칭 시 발생하는 동명이인 문제 방지
+- 공공일자리_필수기능_정의서 04번 요구사항에 따라, 주민번호 단독 매칭 시 발생하는 동명이인 및 타 사업 참여자의 과오납 문제를 방지하기 위함.
+- 퇴사자의 과거 환급금이 현재 재직 명단에서 누락되어 정산되지 않는 행정 오류를 차단해야 함.
 
 ## 변경 내용
-- InsuranceMatcher 서비스 신설
+- InsuranceMatcher 서비스 클래스 신설: 주민번호 외에 사업장 기호, 귀속 년월, 부서 배치 이력(PlacementHistory)을 3단계로 교차 검증하도록 구현.
+- 매칭 신뢰도가 불확실한 경우 자동 확정하지 않고 VALIDATION_ISSUE 테이블에 CONFIRM_REQUIRED 플래그로 저장하도록 예외 분기 추가.
+- 퇴사자 과거 환급 건은 is_refund=True 메타데이터를 유지하여 미지급 목록에서 별도 추적 가능하도록 처리.
 
 Resolves: #42
 ```
 
-## 주의
-- 개인정보(주민등록번호 등)는 커밋, 이슈, PR, 스크린샷에 절대 원본으로 올리지 않습니다.
+#### 4. 피해야 할 나쁜 예시
+- [지양] `fix: 급여 수정` (무엇을, 왜, 어떻게 바꿨는지 전혀 알 수 없음)
+- [지양] `feat: 기능 추가함` (추적 불가능한 커밋)
+- [지양] `update: ocr.py` (변경 이유와 구현 방식 누락)
+
+---
+
+## 2. PR 규칙
+
+### PR 제목 규칙
+`[<Type>] <PR 작업 요약>` 형태로 작성합니다.
+- 예시: `[Feat] 출석부 이미지 텍스트 추출 및 비동기 작업 처리 구현`
+- 예시: `[Fix] 만 65세 이상 참여자 고용보험 실업급여 요율 공제 예외 처리`
+- 예시: `[Docs] 공공일자리 필수기능 정의서 기반 README 전면 보강`
+
+---
+
+### PR 본문 템플릿
+PR을 만들면 [PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md)가 자동으로 채워집니다.
+
+---
+
+### 코드 리뷰 및 머지 정책
+1. **최소 1인 이상의 승인**: PR은 최소 1명 이상의 동료 개발자 코드 리뷰와 승인을 받아야 머지할 수 있습니다.
+2. **CI 빌드 및 테스트 통과 필수**: 정적 분석/린트 검사와 단위 테스트가 모두 성공해야 합니다.
+3. **Squash and Merge 권장**: 기능 브랜치의 자잘한 작업 커밋들을 깔끔하게 단일 커밋으로 합쳐서 `develop`의 히스토리를 정돈합니다.
+4. **브랜치 삭제**: 머지가 완료된 기능 브랜치는 즉시 삭제하여 브랜치 목록을 청결하게 유지합니다.
+
+---
+
+## 3. 로컬 개발 환경
+
+> **안내**: 본 프로젝트의 기술 스택은 팀 논의를 거쳐 최종 확정될 예정이며, 스택 확정 후 각 파트별 구체적인 로컬 실행 매뉴얼이 공지됩니다. 아래는 `공공일자리_필수기능_정의서` 추천 스택 기준의 환경 구성 예시입니다.
+
+### 1. 요구 환경 예시
+- Node.js 18+ 및 패키지 매니저(npm, yarn, pnpm)
+- Python 3.11+ (또는 확정 백엔드 런타임)
+- 관계형 데이터베이스: PostgreSQL 16+ (또는 MySQL 8.0+)
+- 인메모리 큐/캐시: Redis (비동기 OCR 및 대용량 배치용)
+
+### 2. 백엔드 세팅 예시
+```bash
+# 가상환경 생성 및 활성화
+python3 -m venv venv
+source venv/bin/activate
+
+# 의존성 패키지 설치
+pip install -r requirements.txt
+
+# 데이터베이스 마이그레이션
+python manage.py migrate
+
+# 개발 서버 실행
+python manage.py runserver
+```
+
+### 3. 프론트엔드 세팅 예시
+```bash
+cd frontend
+npm install
+npm run start
+```
+
+### 4. 비동기 작업 워커 실행 예시
+```bash
+celery -A config worker --loglevel=info
+```
+
+---
+
+## 4. 주의
+- 개인정보(주민등록번호 등) 원본은 커밋, 이슈, PR, 스크린샷에 절대 올리지 않습니다. 테스트에는 가짜 데이터만 사용합니다.
+- `.env`, 실제 업무 엑셀·스캔 파일은 `.gitignore`로 제외합니다.

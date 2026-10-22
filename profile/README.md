@@ -35,14 +35,16 @@
 | [Back](https://github.com/YC-CapstoneDesign-5/Back) | API 서버·검증/계산 엔진·비동기 워커 |
 
 ## 팀
-| 이름 | 역할 |
-| :--- | :--- |
-| **이규빈** | **PM** |
-| **박희동** | **UI/UX** |
-| **황규빈** | **Frontend** |
-| **제성준** | **Frontend** |
-| **김정운** | **Backend** |
-| **김준승** | **QA** |
-| **황원경** | **Documentation** |
+| 이름 | 역할 | 주요 담당 |
+| :--- | :--- | :--- |
+| **이규빈** | **PM** | 프로젝트 총괄, WBS 일정 관리 및 요구사항 정의 |
+| **박희동** | **UI/UX** | 복잡한 대용량 출석·급여 대조표의 직관적인 데이터 그리드 설계 |
+| **황규빈** | **Frontend** | 통합 대시보드 및 검증 결과 비교/재계산 화면 구현 |
+| **제성준** | **Frontend** | 비정형 엑셀 업로드 UI 및 템플릿 매핑 마법사 인터페이스 구현 |
+| **김정운** | **Backend** | 참여자·출석·급여 통합 도메인 설계 및 메인 REST API 구축 |
+| **김준승** | **QA** | 교차 검증 룰 엔진 엣지 케이스 및 데이터 정합성 검증 |
+| **황원경** | **Documentation** | 기술 명세서, 시스템 아키텍처 다이어그램 및 API 문서화 |
+
+상세 역할은 [협업 가이드](https://github.com/YC-CapstoneDesign-5/.github/blob/main/CONTRIBUTING.md#0-팀-역할)를 참고하세요.
 
 <sub>기술 스택은 팀 협의 후 확정 예정입니다. 현재 후보는 [아키텍처 문서](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#10-기술-스택-확정-전)를 참고하세요.</sub>

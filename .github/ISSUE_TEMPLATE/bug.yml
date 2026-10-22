@@ -1,0 +1,31 @@
+name: 버그 리포트 (Fix)
+description: 버그 및 결함 제보
+title: "[Fix] "
+labels: ["fix"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 버그 설명
+      description: 어떤 문제가 발생했는지 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 재현 방법
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대 결과 / 실제 결과
+  - type: textarea
+    id: env
+    attributes:
+      label: 환경 및 첨부
+      description: 브라우저, OS, 브랜치, 스크린샷, 로그 등 (개인정보는 반드시 마스킹)

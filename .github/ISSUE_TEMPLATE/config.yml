@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 협업 규칙 (브랜치 / 커밋 / PR)
+    url: https://github.com/YC-CapstoneDesign-5/.github/blob/main/CONTRIBUTING.md
+    about: 이슈/PR 작성 전 협업 규칙을 확인해주세요.

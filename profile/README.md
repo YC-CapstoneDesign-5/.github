@@ -440,6 +440,8 @@ Resolves: #42
 
 ### PR 본문 템플릿
 
+> 모든 레포지토리에서 PR 생성 시 [PULL_REQUEST_TEMPLATE.md](https://github.com/YC-CapstoneDesign-5/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)가 자동으로 채워집니다. 이슈 템플릿과 협업 가이드는 [CONTRIBUTING.md](https://github.com/YC-CapstoneDesign-5/.github/blob/main/CONTRIBUTING.md)를 참고하세요.
+
 ```markdown
 ## 개요
 - 작업하신 브랜치: `feat/payroll-calculator` -> `develop`

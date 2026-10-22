@@ -17,8 +17,8 @@
 | 06 | 출석부 OCR 대조 | 스캔 출석부와 엑셀 근무시간 자동 비교 |
 | 07 | 제출 서식 생성 | 건강보험공단·일모아·인사랑 양식 원클릭 생성 |
 | 08 | 현황·마감 알림 | 집행률, 미처리 건, 신고 기한 D-7/D-3/D-Day |
-| 09 | 부서 Pre-Check 포털 <sub>제안</sub> | 부서가 제출 전에 스스로 오류 확인·수정 |
-| 10 | AI 행정규정 챗봇 <sub>제안</sub> | 업무 지침을 근거와 출처로 답변 (RAG) |
+| 09 | 부서 Pre-Check 포털 | 부서가 제출 전에 스스로 오류 확인·수정 |
+| 10 | AI 행정규정 챗봇 | 업무 지침을 근거와 출처로 답변 (RAG) |
 
 ## 문서
 | 문서 | 내용 |
@@ -47,4 +47,4 @@
 
 상세 역할은 [협업 가이드](https://github.com/YC-CapstoneDesign-5/.github/blob/main/CONTRIBUTING.md#0-팀-역할)를 참고하세요.
 
-<sub>기술 스택은 팀 협의 후 확정 예정입니다. 현재 후보는 [아키텍처 문서](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#10-기술-스택-확정-전)를 참고하세요.</sub>
+**기술 스택**: React · TypeScript · Django REST Framework · PostgreSQL · Celery · Redis · PaddleOCR · pgvector ([상세](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#10-기술-스택))

@@ -123,15 +123,15 @@ PR을 만들면 [PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md)가 
 
 ## 3. 로컬 개발 환경
 
-> **안내**: 본 프로젝트의 기술 스택은 팀 논의를 거쳐 최종 확정될 예정이며, 스택 확정 후 각 파트별 구체적인 로컬 실행 매뉴얼이 공지됩니다. 아래는 `공공일자리_필수기능_정의서` 추천 스택 기준의 환경 구성 예시입니다.
+> 확정 스택 기준입니다. 레포별 상세 실행 방법은 각 레포 README에 적습니다.
 
-### 1. 요구 환경 예시
+### 1. 요구 환경
 - Node.js 18+ 및 패키지 매니저(npm, yarn, pnpm)
-- Python 3.11+ (또는 확정 백엔드 런타임)
-- 관계형 데이터베이스: PostgreSQL 16+ (또는 MySQL 8.0+)
+- Python 3.11+
+- PostgreSQL 16+ (pgvector 확장)
 - 인메모리 큐/캐시: Redis (비동기 OCR 및 대용량 배치용)
 
-### 2. 백엔드 세팅 예시
+### 2. 백엔드
 ```bash
 # 가상환경 생성 및 활성화
 python3 -m venv venv
@@ -147,14 +147,14 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-### 3. 프론트엔드 세팅 예시
+### 3. 프론트엔드
 ```bash
 cd frontend
 npm install
 npm run start
 ```
 
-### 4. 비동기 작업 워커 실행 예시
+### 4. 비동기 작업 워커
 ```bash
 celery -A config worker --loglevel=info
 ```

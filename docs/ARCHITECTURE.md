@@ -2,7 +2,7 @@
 
 > [← 조직 홈](https://github.com/YC-CapstoneDesign-5) · [아키텍처](ARCHITECTURE.md) · [기능 명세](FEATURES.md) · [로드맵](ROADMAP.md) · [협업 가이드](../CONTRIBUTING.md)
 
-> **문서 상태**: 설계 단계. 기술 스택은 [추천 스택](#10-기술-스택-확정-전) 기준이며 팀 협의 후 확정합니다. 확정되면 이 문서를 먼저 갱신합니다.
+> **문서 상태**: 구현 기준 설계. 구조나 [기술 스택](#10-기술-스택)이 바뀌면 코드보다 이 문서를 먼저 갱신합니다.
 
 ## 목차
 1. [한눈에 보기](#1-한눈에-보기)
@@ -14,7 +14,7 @@
 7. [핵심 파이프라인](#7-핵심-파이프라인)
 8. [데이터 모델](#8-데이터-모델)
 9. [업무 상태 모델](#9-업무-상태-모델)
-10. [기술 스택 (확정 전)](#10-기술-스택-확정-전)
+10. [기술 스택](#10-기술-스택)
 11. [보안 및 데이터 관리](#11-보안-및-데이터-관리)
 12. [기술 제약 T1~T4](#12-기술-제약-t1t4)
 
@@ -73,7 +73,7 @@ flowchart LR
 
 ## 4. 모듈 구성
 
-기능 번호는 [FEATURES.md](FEATURES.md)의 번호와 같습니다. 09·10은 [추가 기능 제안](FEATURES.md#추가-기능-제안)입니다.
+기능 번호는 [FEATURES.md](FEATURES.md)의 번호와 같습니다.
 
 ```mermaid
 flowchart TB
@@ -131,7 +131,7 @@ flowchart LR
     W --> DB
     W --> ST
     API --> RAG["RAG 서비스"]
-    RAG --> VDB[("벡터 인덱스<br>지침 문서 조각")]
+    RAG --> VDB[("pgvector<br>지침 문서 조각")]
     RAG --> LLM["LLM API"]
 ```
 
@@ -187,7 +187,7 @@ sequenceDiagram
 
 - 결과는 **원본 파일·시트·행·페이지** 위치와 함께 보여줍니다.
 - `확인 필요`(OCR 저신뢰, 서명·도장 판독 불확실)는 제출을 막지 않고 중앙 담당자에게 넘깁니다.
-- MVP: 업로드 → 기본 검증 → 결과 확인 → 최종 제출. 공가 증빙 판독, 고도화된 서명·도장 판별은 OCR 실험 후 추가.
+- MVP: 업로드 → 기본 검증 → 결과 확인 → 최종 제출. 공가 증빙 판독, 고도화된 서명·도장 판별은 2차 범위.
 
 ### 7.2 엑셀 취합 (02)
 
@@ -262,7 +262,7 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    Q["질문"] --> S["관련 지침 검색<br>(벡터 인덱스)"]
+    Q["질문"] --> S["관련 지침 검색<br>(pgvector)"]
     S --> E{"근거 문단 있음?<br>문서 간 충돌 없음?"}
     E -->|예| G["근거 문단으로 답변 생성"]
     G --> O["답변 + 출처<br>문서명 · 항목 · 버전/기준일"]
@@ -394,8 +394,6 @@ erDiagram
 | 제출 (09) | `SUBMISSION` | 부서·월 단위 제출 건, Pre-Check 결과 |
 | 지식 (10) | `GUIDE_DOCUMENT`, `GUIDE_CHUNK`, `CHAT_LOG` | 답변에 쓴 문서 버전 기록. 업무 데이터와 분리 |
 
-> 09·10 엔티티는 추가 기능 제안 기준의 초안입니다.
-
 ---
 
 ## 9. 업무 상태 모델
@@ -441,17 +439,17 @@ stateDiagram-v2
 
 ---
 
-## 10. 기술 스택 (확정 전)
+## 10. 기술 스택
 
-| 영역 | 추천 스택 | 이유 | 대안 |
-| :--- | :--- | :--- | :--- |
-| 프론트엔드 | React + TypeScript + MUI | 대용량 데이터 그리드, 타입 안정성 | Next.js, Vue 3 |
-| 백엔드 | Python + Django REST Framework | 복잡한 도메인·룰 엔진, 세부 권한 검사 (T1) | FastAPI, Spring Boot |
-| 데이터베이스 | PostgreSQL | 정확한 `NUMERIC` (T3), JSONB, 트랜잭션 | MySQL 8.0 |
-| 엑셀 엔진 | pandas + openpyxl | 이종 엑셀 정규화, 원본 서식 보존 주입 (T2) | Apache POI, ExcelJS |
-| OCR | OpenCV + PaddleOCR | 표 외곽선 검출, 한글 행정 서식 경량 모델 (T4) | Tesseract, Cloud OCR |
-| 비동기 작업 | Celery + Redis | OCR·서식 생성 백그라운드, 재시도 | BullMQ |
-| RAG | 벡터 인덱스 + LLM API | 지침 문서 근거 검색·답변, 출처 표시 | 미정 (실험 후 결정) |
+| 영역 | 스택 | 이유 |
+| :--- | :--- | :--- |
+| 프론트엔드 | React + TypeScript + MUI | 대용량 데이터 그리드, 타입 안정성 |
+| 백엔드 | Python + Django REST Framework | 복잡한 도메인·룰 엔진, 세부 권한 검사 (T1) |
+| 데이터베이스 | PostgreSQL | 정확한 `NUMERIC` (T3), JSONB, 트랜잭션 |
+| 엑셀 엔진 | pandas + openpyxl | 이종 엑셀 정규화, 원본 서식 보존 주입 (T2) |
+| OCR | OpenCV + PaddleOCR | 표 외곽선 검출, 한글 행정 서식 경량 모델 (T4) |
+| 비동기 작업 | Celery + Redis | OCR·서식 생성 백그라운드, 재시도 |
+| RAG | pgvector + LLM API | 지침 문서 근거 검색·답변, 출처 표시 |
 
 ---
 

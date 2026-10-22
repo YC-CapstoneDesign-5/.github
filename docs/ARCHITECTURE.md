@@ -192,7 +192,7 @@ sequenceDiagram
 ### 7.2 엑셀 취합 (02)
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["엑셀 업로드"] --> B["시트·셀 파싱<br>식별자는 문자열로"]
     B --> C["안내 문구·합계 행 제거"]
     C --> D["열 매핑 → 표준 스키마<br>날짜 YYYY-MM-DD, 금액 Decimal"]
@@ -207,7 +207,7 @@ flowchart LR
 ### 7.3 인건비 계산 (03)
 
 ```mermaid
-flowchart LR
+flowchart TD
     A["검증된 근태"] --> B["정상 근무 기본급"]
     B --> C["조퇴·결근 공제<br>유·무급 휴가<br>중도 입퇴사 일할"]
     C --> D["주휴·유급휴가 수당"]

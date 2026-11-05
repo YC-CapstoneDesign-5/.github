@@ -38,10 +38,10 @@ flowchart LR
 
 | Prefix | 사용 목적 | 예시 |
 | :--- | :--- | :--- |
-| `feat` | 새로운 기능 개발 | `feat/ocr-pipeline`, `feat/payroll-calculator`, `feat/excel-ingestion` |
+| `feat` | 새로운 기능 개발 | `feat/validation-engine`, `feat/payroll-calculator`, `feat/excel-ingestion` |
 | `fix` | 버그 및 결함 수정 | `fix/decimal-rounding-error`, `fix/insurance-matching-null` |
 | `docs` | 문서 작성 및 수정 | `docs/readme-specification`, `docs/api-guide` |
-| `refactor` | 코드 리팩토링 (기능 변경 없음) | `refactor/clean-payroll-service`, `refactor/ocr-worker` |
+| `refactor` | 코드 리팩토링 (기능 변경 없음) | `refactor/clean-payroll-service`, `refactor/excel-parser` |
 | `test` | 테스트 코드 작성 및 검증 | `test/payroll-edge-cases`, `test/e2e-scenarios` |
 | `chore` | 빌드, 패키지 매니저, 환경 설정 | `chore/update-dependencies`, `chore/docker-compose` |
 
@@ -67,7 +67,7 @@ Resolves: #이슈번호 (선택사항)
 ```
 
 #### 2. 커밋 타입
-- `feat`: 새로운 기능 추가 (예: OCR 파이프라인 추가, 4대보험 귀속 매칭 추가)
+- `feat`: 새로운 기능 추가 (예: 엑셀 취합 엔진 추가, 4대보험 귀속 매칭 추가)
 - `fix`: 버그 및 오류 수정 (예: 일할 계산 시 주휴수당 누락 버그 수정)
 - `docs`: 문서 수정 및 추가 (예: README 명세서 최신화, API 문서 작성)
 - `style`: 코드 포맷팅, 세미콜론 누락, 들여쓰기 수정 (로직 변경 없음)
@@ -94,7 +94,7 @@ Resolves: #42
 #### 4. 피해야 할 나쁜 예시
 - [지양] `fix: 급여 수정` (무엇을, 왜, 어떻게 바꿨는지 전혀 알 수 없음)
 - [지양] `feat: 기능 추가함` (추적 불가능한 커밋)
-- [지양] `update: ocr.py` (변경 이유와 구현 방식 누락)
+- [지양] `update: parser.py` (변경 이유와 구현 방식 누락)
 
 ---
 
@@ -102,7 +102,7 @@ Resolves: #42
 
 ### PR 제목 규칙
 `[<Type>] <PR 작업 요약>` 형태로 작성합니다.
-- 예시: `[Feat] 출석부 이미지 텍스트 추출 및 비동기 작업 처리 구현`
+- 예시: `[Feat] 엑셀 취합 엔진 및 원본 위치 보존 구현`
 - 예시: `[Fix] 만 65세 이상 참여자 고용보험 실업급여 요율 공제 예외 처리`
 - 예시: `[Docs] 공공일자리 필수기능 정의서 기반 README 전면 보강`
 
@@ -129,7 +129,7 @@ PR을 만들면 [PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md)가 
 - Node.js 18+ 및 패키지 매니저(npm, yarn, pnpm)
 - Python 3.11+
 - PostgreSQL 16+ (pgvector 확장)
-- 인메모리 큐/캐시: Redis (비동기 OCR 및 대용량 배치용)
+- 인메모리 큐/캐시: Redis (비동기 서식 생성 및 대용량 배치용)
 
 ### 2. 백엔드
 ```bash
@@ -163,4 +163,4 @@ celery -A config worker --loglevel=info
 
 ## 4. 주의
 - 개인정보(주민등록번호 등) 원본은 커밋, 이슈, PR, 스크린샷에 절대 올리지 않습니다. 테스트에는 가짜 데이터만 사용합니다.
-- `.env`, 실제 업무 엑셀·스캔 파일은 `.gitignore`로 제외합니다.
+- `.env`, 실제 업무 엑셀·한글·PDF 파일은 `.gitignore`로 제외합니다.

@@ -4,7 +4,7 @@
 ![행정 구조대 한눈에 보기](https://raw.githubusercontent.com/YC-CapstoneDesign-5/.github/main/docs/images/overview.svg)
 
 ## 왜 만드나
-지자체 일자리창출과는 매달 약 60개 부서가 제각각 서식으로 보내는 엑셀과 종이 출석부를 손으로 취합하고, 인건비를 계산하고, 수천 명이 섞인 4대보험 고지서에서 참여자분을 골라냅니다. 이 반복 작업을 **검증 가능한 자동화**로 바꾸는 것이 목표입니다.
+지자체 일자리창출과는 매달 약 60개 부서가 제각각 서식으로 보내는 엑셀 출석부를 손으로 취합하고, 인건비를 계산하고, 수천 명이 섞인 4대보험 고지서에서 참여자분을 골라냅니다. 이 반복 작업을 **검증 가능한 자동화**로 바꾸는 것이 목표입니다.
 
 ## 핵심 기능
 | # | 기능 | 한 줄 요약 |
@@ -14,7 +14,6 @@
 | 03 | 인건비 계산 | 휴가·조퇴·중도 입퇴사까지 1원 단위 정확 계산 |
 | 04 | 4대보험 귀속 대조 | 주민번호 단독이 아닌 다차원 매칭, 퇴사자 환급 추적 |
 | 05 | 오류 검증 | 누락·중복·금액 차이를 원본 위치와 함께 표시 |
-| 06 | 출석부 OCR 대조 | 스캔 출석부와 엑셀 근무시간 자동 비교 |
 | 07 | 제출 서식 생성 | 건강보험공단·일모아·인사랑 양식 원클릭 생성 |
 | 08 | 현황·마감 알림 | 집행률, 미처리 건, 신고 기한 D-7/D-3/D-Day |
 | 09 | 부서 Pre-Check 포털 | 부서가 제출 전에 스스로 오류 확인·수정 |
@@ -47,6 +46,6 @@
 
 상세 역할은 [협업 가이드](https://github.com/YC-CapstoneDesign-5/.github/blob/main/CONTRIBUTING.md#0-팀-역할)를 참고하세요.
 
-**기술 스택**: React · TypeScript · Django REST Framework · PostgreSQL · Celery · Redis · PaddleOCR · pgvector ([상세](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#10-기술-스택))
+**기술 스택**: React · TypeScript · Django REST Framework · PostgreSQL · Celery · Redis · pgvector ([상세](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#10-기술-스택))
 
 <sub>모든 기능이 구현된다는 전제로 설계했습니다. 전제 조건은 [아키텍처 문서 13장](https://github.com/YC-CapstoneDesign-5/.github/blob/main/docs/ARCHITECTURE.md#13-전제-가정)에 정리했습니다.</sub>

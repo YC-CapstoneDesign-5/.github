@@ -7,7 +7,7 @@ body:
     id: background
     attributes:
       label: 배경 및 목적
-      description: 어떤 요구사항(필수기능 정의서 번호 등)에 의한 작업인지 적어주세요.
+      description: 어떤 요구사항(기능 ID: FN-xx / EX-xx / NFR-xx)에 의한 작업인지 적어주세요.
     validations:
       required: true
   - type: textarea

@@ -162,7 +162,7 @@ flowchart LR
     subgraph NET["행정망 (내부망) · 외부 인터넷 비의존"]
         PC["PC 브라우저<br>Chrome · Edge"] -->|TLS 1.2+ · REST| API
         MOB["모바일 브라우저<br>반응형 웹 / PWA"] -->|TLS 1.2+ · REST| API
-        API["API 서버<br>Django REST Framework"] --> DB[("PostgreSQL<br>업무 데이터 · 감사 로그")]
+        API["API 서버<br>FastAPI"] --> DB[("PostgreSQL<br>업무 데이터 · 감사 로그")]
         API --> ST[("비공개 스토리지<br>원본 엑셀 · 스캔본 · 서명본 · 생성 서식")]
         API -->|작업 등록| Q[["Redis<br>작업 큐"]]
         Q --> W["Celery 워커"]
@@ -596,7 +596,7 @@ stateDiagram-v2
 | :--- | :--- | :--- |
 | 프론트엔드 | React + TypeScript + MUI | 대용량 데이터 그리드, 타입 안정성, 접근성 컴포넌트 (NFR-14) |
 | 모바일 | 반응형 웹 + PWA | 설치 없이 담당자 모바일 브라우저에서 전자출석 (FN-12, NFR-15) |
-| 백엔드 | Python + Django REST Framework | 복잡한 도메인·룰 엔진, 객체 단위 권한 검사 (T1) |
+| 백엔드 | Python + FastAPI + SQLAlchemy 2 (Alembic) | Pydantic 입력 검증, 자동 OpenAPI 문서, 의존성 주입(`Depends`)으로 API마다 객체 단위 권한 검사 (T1) |
 | 데이터베이스 | PostgreSQL | 정확한 `NUMERIC` (T3), JSONB(양식 설정·규칙 스냅샷), 트랜잭션 |
 | 엑셀 엔진 | pandas + openpyxl (xls는 xlrd) | 이종 엑셀 정규화, 원본 서식 보존 주입 (T2, NFR-15) |
 | OCR | OpenCV + PaddleOCR | 기울기·잡음 보정, 한국어·숫자 인식, 온프레미스 (T4, NFR-08) |

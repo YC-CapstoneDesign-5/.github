@@ -133,19 +133,19 @@ PR을 만들면 [PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md)가 
 - OCR: OpenCV + PaddleOCR (모델 파일은 내부망 배포를 위해 로컬에 둡니다)
 
 ### 2. 백엔드
+패키지 관리는 [uv](https://docs.astral.sh/uv/)를 씁니다 (`uv.lock`으로 버전 고정).
 ```bash
-# 가상환경 생성 및 활성화
-python3 -m venv venv
-source venv/bin/activate
+cp .env.example .env
+docker compose up -d db redis          # PostgreSQL + Redis
 
-# 의존성 패키지 설치
-pip install -r requirements.txt
+# 의존성 설치 (.venv 자동 생성)
+uv sync
 
 # 데이터베이스 마이그레이션
-python manage.py migrate
+uv run alembic upgrade head
 
-# 개발 서버 실행
-python manage.py runserver
+# 개발 서버 실행 (API 문서: http://localhost:8000/docs)
+uv run uvicorn app.main:app --reload
 ```
 
 ### 3. 프론트엔드
@@ -156,11 +156,12 @@ npm run start
 ```
 
 ### 4. 비동기 작업 워커
+Celery 앱은 `app/worker.py`에 둡니다 (도입 예정).
 ```bash
-celery -A config worker --loglevel=info
+uv run celery -A app.worker worker --loglevel=info
 
 # 마감 독촉·기한 알림 스케줄러
-celery -A config beat --loglevel=info
+uv run celery -A app.worker beat --loglevel=info
 ```
 
 ---
